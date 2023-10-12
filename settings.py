@@ -20,7 +20,13 @@ class Cell:
             text="Text",
         )
         button.bind("<Button-1>", self.left_click)
+        button.bind("<Button-2>", self.right_click)
         self.cell_button = button
     
     def left_click(self, event):
+        print(event)
         print("Left Clicked")
+        
+    def right_click(self, event):
+        print(event)
+        print("Right Clicked")
