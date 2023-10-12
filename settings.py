@@ -19,4 +19,8 @@ class Cell:
             location,
             text="Text",
         )
+        button.bind("<Button-1>", self.left_click)
         self.cell_button = button
+    
+    def left_click(self, event):
+        print("Left Clicked")
