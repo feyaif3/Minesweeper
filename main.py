@@ -19,8 +19,12 @@ left_frame.place(x=0, y=settings.height_percentage(25))
 game_frame = Frame(root, bg="black", width=settings.width_percentage(75), height=settings.height_percentage(75))
 game_frame.place(x=settings.width_percentage(25), y=settings.height_percentage(25))
 
-c1 = Cell()
-c1.create_button(game_frame)
+#Button Placement
+for x in range(6):
+    for y in range(6):
+        c = Cell()
+        c.create_button(game_frame)
+        c.cell_button.grid(column=x, row=y)
 
 
 #Run the window
