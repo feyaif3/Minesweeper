@@ -10,14 +10,21 @@ def width_percentage(percentage):
     return (WIDTH / 100) * percentage
 
 class Cell:
-    def __init__(self, is_mine=False):
+    all = []
+    def __init__(self, x, y, is_mine=False):
         self.is_mine = is_mine
         self.cell_button = None
+        self.x = x
+        self.y = y
+        
+        Cell.all.append(self)
         
     def create_button(self, location):
         button = Button(
             location,
-            text="Text",
+            width=12,
+            height=4,
+            text=f"{self.x}, {self.y}",
         )
         button.bind("<Button-1>", self.left_click)
         button.bind("<Button-2>", self.right_click)
@@ -30,3 +37,10 @@ class Cell:
     def right_click(self, event):
         print(event)
         print("Right Clicked")
+        
+    @staticmethod
+    def randomise_mines():
+        pass
+    
+    def __repr__(self):
+        return f"Cell({self.x}, {self.y})"

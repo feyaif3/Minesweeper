@@ -22,7 +22,7 @@ game_frame.place(x=settings.width_percentage(25), y=settings.height_percentage(2
 #Button Placement
 for x in range(6):
     for y in range(6):
-        c = Cell()
+        c = Cell(x, y)
         c.create_button(game_frame)
         c.cell_button.grid(column=x, row=y)
 
