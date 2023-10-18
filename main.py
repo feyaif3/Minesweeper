@@ -27,5 +27,7 @@ for x in range(6):
         c.cell_button.grid(column=x, row=y)
 
 
+Cell.randomise_mines()
+
 #Run the window
 root.mainloop()
