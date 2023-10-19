@@ -35,7 +35,7 @@ class Cell:
         if self.is_mine:
             self.show_mine()
         else:
-            self.show_number()
+            self.show_cell()
             
     def get_cell_by_position(self, x, y):
         for cell in Cell.all:
@@ -56,9 +56,19 @@ class Cell:
         ]
         
         cells = [cell for cell in cells if cell is not None]
+        return cells
+    
+    @property
+    def surrounded_mines_length(self):
+        counter = 0
+        for cell in self.surrounded_cells:
+            if cell.is_mine:
+                counter += 1
+        return counter
             
     def show_cell(self):
-        print(self.surrounded_cells)
+        self.cell_button.configure(text=self.surrounded_mines_length)
+      
             
     def show_mine(self):
         self.cell_button["text"] = "X"
