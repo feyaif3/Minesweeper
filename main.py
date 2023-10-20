@@ -29,6 +29,7 @@ for x in range(6):
 
 #Call the label from the cell class
 Cell.create_cell_counter_label(left_frame)
+Cell.cell_count_label_object.place(x=0, y=0)
 
 Cell.randomise_mines()
 

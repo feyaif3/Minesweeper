@@ -14,9 +14,11 @@ def width_percentage(percentage):
 
 class Cell:
     all = []
+    cell_count = CELL_COUNT
     cell_count_label_object = None
     def __init__(self, x, y, is_mine=False):
         self.is_mine = is_mine
+        self.is_opened = False
         self.cell_button = None
         self.x = x
         self.y = y
@@ -38,7 +40,12 @@ class Cell:
     def create_cell_counter_label(location):
         label = Label(
             location,
-            text=f"Cells Left:{CELL_COUNT}"
+            bg="black",
+            fg="white",
+            text=f"Cells Left:{Cell.cell_count}",
+            width=12,
+            height=4,
+            font=("Arial", 30),
         )
         Cell.cell_count_label_object = label
         
@@ -81,7 +88,13 @@ class Cell:
         return counter
             
     def show_cell(self):
-        self.cell_button.configure(text=self.surrounded_mines_length)
+        if not self.is_opened:
+            Cell.cell_count -= 1
+            self.cell_button.configure(text=self.surrounded_mines_length)
+            if Cell.cell_count_label_object:
+                Cell.cell_count_label_object.configure(text=f"Cells Left:{Cell.cell_count}")
+            
+        self.is_opened = True
       
             
     def show_mine(self):
