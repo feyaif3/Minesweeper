@@ -27,6 +27,9 @@ for x in range(6):
         c.cell_button.grid(column=x, row=y)
 
 
+#Call the label from the cell class
+Cell.create_cell_counter_label(left_frame)
+
 Cell.randomise_mines()
 
 #Run the window

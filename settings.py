@@ -14,6 +14,7 @@ def width_percentage(percentage):
 
 class Cell:
     all = []
+    cell_count_label_object = None
     def __init__(self, x, y, is_mine=False):
         self.is_mine = is_mine
         self.cell_button = None
@@ -32,15 +33,15 @@ class Cell:
         button.bind("<Button-1>", self.left_click)
         button.bind("<Button-2>", self.right_click)
         self.cell_button = button
-        
-    def create_cell_counter_label(self, location):
+    
+    @staticmethod
+    def create_cell_counter_label(location):
         label = Label(
             location,
             text=f"Cells Left:{CELL_COUNT}"
         )
-        return label
+        Cell.cell_count_label_object = label
         
-    
     def left_click(self, event):
         if self.is_mine:
             self.show_mine()
