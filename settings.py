@@ -1,8 +1,10 @@
-from tkinter import Button
+from tkinter import Button, Label
 import random
 
 WIDTH = 1440
 HEIGHT = 720
+GRID_SIZE = 6
+CELL_COUNT = GRID_SIZE ** 2
 
 def height_percentage(percentage):
     return (HEIGHT / 100) * percentage
@@ -30,11 +32,22 @@ class Cell:
         button.bind("<Button-1>", self.left_click)
         button.bind("<Button-2>", self.right_click)
         self.cell_button = button
+        
+    def create_cell_counter_label(self, location):
+        label = Label(
+            location,
+            text=f"Cells Left:{CELL_COUNT}"
+        )
+        return label
+        
     
     def left_click(self, event):
         if self.is_mine:
             self.show_mine()
         else:
+            if self.surrounded_mines_length == 0:
+                for cell in self.surrounded_cells:
+                    cell.show_cell()
             self.show_cell()
             
     def get_cell_by_position(self, x, y):
