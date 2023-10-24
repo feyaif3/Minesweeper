@@ -9,6 +9,7 @@ CELL_COUNT = GRID_SIZE ** 2
 def height_percentage(percentage):
     return (HEIGHT / 100) * percentage
 
+
 def width_percentage(percentage):
     return (WIDTH / 100) * percentage
 
@@ -33,8 +34,8 @@ class Cell:
             height=4,
             font = ("Arial", 15), 
         )
-        button.bind("<Button-1>", self.left_click)
-        button.bind("<Button-2>", self.right_click)
+        button.bind("<Button-1>", self.left_click)#Left click
+        button.bind("<Button-2>", self.right_click)#Right click
         self.cell_button = button
     
     @staticmethod
@@ -98,8 +99,8 @@ class Cell:
       
             
     def show_mine(self):
-        self.cell_button["text"] = "X"
-        self.cell_button["bg"] = "red"
+        self.cell_button.configure(text="*", bg="red")
+        
         
     def right_click(self, event):
         if not self.is_mine_candidate:
