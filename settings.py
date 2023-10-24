@@ -19,6 +19,7 @@ class Cell:
     def __init__(self, x, y, is_mine=False):
         self.is_mine = is_mine
         self.is_opened = False
+        self.is_mine_candidate = False
         self.cell_button = None
         self.x = x
         self.y = y
@@ -92,8 +93,7 @@ class Cell:
             Cell.cell_count -= 1
             self.cell_button.configure(text=self.surrounded_mines_length)
             if Cell.cell_count_label_object:
-                Cell.cell_count_label_object.configure(text=f"Cells Left:{Cell.cell_count}")
-            
+                Cell.cell_count_label_object.configure(text=f"Squares Left:{Cell.cell_count}")
         self.is_opened = True
       
             
@@ -102,8 +102,13 @@ class Cell:
         self.cell_button["bg"] = "red"
         
     def right_click(self, event):
-        print(event)
-        print("Right Clicked")
+        if not self.is_mine_candidate:
+            self.cell_button.configure(bg="yellow", text="?")
+            self.is_mine_candidate = True
+        else:
+            self.cell_button.configure(bg="SystemButtonFace", text="")
+            self.is_mine_candidate = False
+
         
     @staticmethod
     def randomise_mines():
